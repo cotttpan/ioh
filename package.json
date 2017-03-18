@@ -1,0 +1,50 @@
+{
+  "name": "ioh",
+  "description": "ioh",
+  "version": "0.0.1",
+  "author": "cotto",
+  "bugs": {
+    "url": "https://github.com/cotttpan/ioh/issues"
+  },
+  "dependencies": {
+    "@types/node": "^7.0.8"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.40",
+    "@types/power-assert": "^1.4.29",
+    "@types/sinon": "^1.16.35",
+    "espower-typescript": "^8.0.0",
+    "mocha": "^3.2.0",
+    "npm-run-all": "^4.0.2",
+    "power-assert": "^1.4.2",
+    "rimraf": "^2.6.1",
+    "sinon": "^2.0.0",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENCE"
+  ],
+  "keywords": [
+    "typescript",
+    "immutable"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cotttpan/ioh"
+  },
+  "scripts": {
+    "build": "npm-run-all build:*",
+    "build:src": "tsc",
+    "clean": "npm-run-all clean:** -p",
+    "clean:dist": "rimraf ./dist",
+    "lint": "tslint src/**/*.ts",
+    "start": "tsc -w",
+    "test": "NODE_ENV=test mocha"
+  },
+  "types": "dist/index.d.ts"
+}
