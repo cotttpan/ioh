@@ -1,7 +1,7 @@
 {
   "name": "ioh",
-  "description": "ioh",
-  "version": "0.0.1",
+  "description": "Immutable Object Helper",
+  "version": "0.0.2",
   "author": "cotto",
   "bugs": {
     "url": "https://github.com/cotttpan/ioh/issues"
