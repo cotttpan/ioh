@@ -60,7 +60,7 @@ describe('setIn', () => {
     context('Object', () => {
         it('return new object', () => {
             const obj = { z: 'replace' };
-            const props = I.updateIn(src, ['c', 'e'], () => obj);
+            const props = I.setIn(src, ['c', 'e'], obj);
             assert.deepEqual(src.c.e, { f: 'deep' });
             assert.deepEqual(props.c.e, obj);
         });
