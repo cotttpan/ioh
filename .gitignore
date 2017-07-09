@@ -45,3 +45,5 @@ typings
 typings.json
 
 ### Project ####
+dist
+playground
