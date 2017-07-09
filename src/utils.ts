@@ -2,7 +2,7 @@ export type Path = string | (string | number)[];
 
 export function isPlainObject(obj: object) {
     return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype;
-};
+}
 
 export function omit(src: any, key: string | number) {
     const clone = { ...src };
@@ -25,7 +25,7 @@ export function rec(src: any, path: Path, value: any, idx: number) {
         return clone;
     }
     return (typeof value === 'function') ? value(src) : value;
-};
+}
 
 export function parsePath(path: Path) {
     return (typeof path === 'string') ? path.split('.') : [...path];

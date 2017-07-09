@@ -8,6 +8,7 @@ export {
 };
 
 /* tslint:disable:max-line-length */
+/* tslint:disable:unified-signatures */
 function getIn<O, K1 extends keyof O, K2 extends keyof O[K1], K3 extends keyof O[K1][K2], K4 extends keyof O[K1][K2][K3], K5 extends keyof O[K1][K2][K3][K4], K6 extends keyof O[K1][K2][K3][K4][K5], K7 extends keyof O[K1][K2][K3][K4][K5][K6], K8 extends keyof O[K1][K2][K3][K4][K5][K6][K7], K9 extends keyof O[K1][K2][K3][K4][K5][K6][K7][K8], K10 extends keyof O[K1][K2][K3][K4][K5][K6][K7][K8][K9]>(src: O, path: string | [K1, K2, K3, K4, K5, K6, K7, K8, K9, K10]): O[K1][K2][K3][K4][K5][K6][K7][K8][K9][K10];
 function getIn<O, K1 extends keyof O, K2 extends keyof O[K1], K3 extends keyof O[K1][K2], K4 extends keyof O[K1][K2][K3], K5 extends keyof O[K1][K2][K3][K4], K6 extends keyof O[K1][K2][K3][K4][K5], K7 extends keyof O[K1][K2][K3][K4][K5][K6], K8 extends keyof O[K1][K2][K3][K4][K5][K6][K7], K9 extends keyof O[K1][K2][K3][K4][K5][K6][K7][K8]>(src: O, path: string | [K1, K2, K3, K4, K5, K6, K7, K8, K9]): O[K1][K2][K3][K4][K5][K6][K7][K8][K9];
 function getIn<O, K1 extends keyof O, K2 extends keyof O[K1], K3 extends keyof O[K1][K2], K4 extends keyof O[K1][K2][K3], K5 extends keyof O[K1][K2][K3][K4], K6 extends keyof O[K1][K2][K3][K4][K5], K7 extends keyof O[K1][K2][K3][K4][K5][K6], K8 extends keyof O[K1][K2][K3][K4][K5][K6][K7]>(src: O, path: string | [K1, K2, K3, K4, K5, K6, K7, K8]): O[K1][K2][K3][K4][K5][K6][K7][K8];
