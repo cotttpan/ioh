@@ -21,7 +21,8 @@
         "skipDefaultLibCheck": true,
         "pretty": true,
         "types": [
-            "jest"
+            "jest",
+            "node"
         ]
     },
     "include": [
