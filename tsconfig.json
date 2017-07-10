@@ -15,23 +15,20 @@
         "noImplicitReturns": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        // https://github.com/power-assert-js/espower-typescript/issues/16
-        // trueにするとespower-assertが動かない(?)
-        // その他にもテストが外部からファイルをimportしてないとerrorになる(?)
-        "noEmitOnError": false,
+        "noEmitOnError": true,
         "sourceMap": true,
         "forceConsistentCasingInFileNames": true,
         "skipDefaultLibCheck": true,
         "pretty": true,
         "types": [
-            "mocha",
-            "node"
+            "jest"
         ]
     },
     "include": [
         "src/**/*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "src/__test__/**"
     ]
 }
