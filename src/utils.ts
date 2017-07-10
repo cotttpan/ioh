@@ -1,6 +1,6 @@
 export type Path = string | (string | number)[];
 
-export function isPlainObject(obj: object) {
+export function isPlainObject(obj: any) {
     return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype;
 }
 
