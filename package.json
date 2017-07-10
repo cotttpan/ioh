@@ -1,6 +1,6 @@
 {
   "name": "ioh",
-  "description": "Immutable Object Helper functions",
+  "description": "Type friendly Immutable Object Helper functions",
   "version": "0.0.4",
   "author": "cotto",
   "bugs": {
@@ -25,20 +25,27 @@
     "README.md",
     "LICENCE"
   ],
+  "homepage": "https://github.com/cotttpan/ioh",
+  "jsnext:main": "es/index.js",
   "keywords": [
-    "typescript",
-    "immutable"
+    "immutable",
+    "typescript"
   ],
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "es/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/cotttpan/ioh"
   },
   "scripts": {
-    "build": "tsc",
-    "clean": "rimraf ./dist",
+    "build": "run-p build:*",
+    "build:dist": "tsc",
+    "build:es": "tsc --module es2015 --outDir es",
+    "clean": "rimraf ./dist ./es",
     "lint": "tslint src/**/*.ts",
+    "myprepublish": "run-s clean build",
+    "mypublish": "npm run myprepublish && npm publish",
     "test": "NODE_EVN=test jest --watch"
   },
   "types": "dist/index.d.ts"
