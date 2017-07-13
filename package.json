@@ -1,11 +1,31 @@
 {
   "name": "ioh",
   "description": "Type friendly Immutable Object Helper functions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "cotto",
+  "license": "MIT",
+  "homepage": "https://github.com/cotttpan/ioh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cotttpan/ioh"
+  },
   "bugs": {
     "url": "https://github.com/cotttpan/ioh/issues"
   },
+  "files": [
+    "es",
+    "dist",
+    "README.md",
+    "LICENCE"
+  ],
+  "jsnext:main": "es/index.js",
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "immutable",
+    "typescript"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@cotto/tslint-config": "^0.0.5",
@@ -20,24 +40,6 @@
     "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENCE"
-  ],
-  "homepage": "https://github.com/cotttpan/ioh",
-  "jsnext:main": "es/index.js",
-  "keywords": [
-    "immutable",
-    "typescript"
-  ],
-  "license": "MIT",
-  "main": "dist/index.js",
-  "module": "es/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cotttpan/ioh"
-  },
   "scripts": {
     "build": "run-p build:*",
     "build:dist": "tsc",
@@ -47,6 +49,5 @@
     "myprepublish": "run-s clean build",
     "mypublish": "npm run myprepublish && npm publish",
     "test": "NODE_EVN=test jest --watch"
-  },
-  "types": "dist/index.d.ts"
+  }
 }
