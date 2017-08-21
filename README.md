@@ -1,6 +1,6 @@
 # ioh
 
-Immutable Object Helper
+Typescript friendly Immutable Object Helper functions
 
 ## install
 
@@ -11,6 +11,6 @@ https://www.npmjs.com/package/ioh
 
 ## API
 
-`getIn`, `hasIn`, `setIn`, `updateIn`, `deleteIn`
+`getIn`, `hasIn`, `setIn`, `updateIn`, `delIn`
 
 See `index.test.ts`
