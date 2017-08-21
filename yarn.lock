@@ -6,9 +6,9 @@
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@cotto/tslint-config/-/tslint-config-0.0.5.tgz#c2f40aa874c875c67c1bb3685d21a93f6d848a02"
 
-"@cotto/utils.ts@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cotto/utils.ts/-/utils.ts-0.0.2.tgz#84699151f24e6944b53fe92dafef8ef89c624a6e"
+"@cotto/utils.ts@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cotto/utils.ts/-/utils.ts-0.0.3.tgz#09843e5bab0f2b133fd9f8613f425efbf89c2fda"
   dependencies:
     "@types/node" "^8.0.24"
 

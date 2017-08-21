@@ -1,14 +1,6 @@
+export { isPlainObject, omit, existy } from '@cotto/utils.ts';
+
 export type Path = string | (string | number)[];
-
-export function isPlainObject(obj: any) {
-    return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype;
-}
-
-export function omit(src: any, key: string | number) {
-    const clone = { ...src };
-    delete clone[key];
-    return clone;
-}
 
 // 参考: https://github.com/debitoor/dot-prop-immutable
 export function rec(src: any, path: Path, value: any, idx: number) {
@@ -29,8 +21,4 @@ export function rec(src: any, path: Path, value: any, idx: number) {
 
 export function parsePath(path: Path) {
     return (typeof path === 'string') ? path.split('.') : [...path];
-}
-
-export function existy(v: any) {
-    return !(v === null || v === undefined);
 }

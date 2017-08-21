@@ -27,7 +27,7 @@
     "typescript"
   ],
   "dependencies": {
-    "@cotto/utils.ts": "^0.0.2"
+    "@cotto/utils.ts": "^0.0.3"
   },
   "devDependencies": {
     "@cotto/tslint-config": "^0.0.5",
