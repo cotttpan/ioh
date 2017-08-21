@@ -1,7 +1,7 @@
 {
   "name": "ioh",
-  "description": "Type friendly Immutable Object Helper functions",
-  "version": "0.0.5",
+  "description": "Typescript friendly Immutable Object Helper functions",
+  "version": "0.0.6",
   "author": "cotto",
   "license": "MIT",
   "homepage": "https://github.com/cotttpan/ioh",
