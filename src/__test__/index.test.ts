@@ -1,91 +1,77 @@
 import { getIn, hasIn, setIn, updateIn, delIn } from './../index'
 
-const src = {
-  a: { b: 'b', c: { d: 'd' } },
-  e: [{ f: 'f' }, { g: 'g' }],
-}
+const src = () => ({
+  obj: { a: 'a', b: 'b' },
+  arr: [{ prop: 'a' }, { prop: 'b' }],
+})
 
 describe('getIn', () => {
-  test('in object', () => {
-    expect(getIn(src, ['a', 'b'])).toBe('b')
-    expect(getIn(src, 'a.b')).toBe('b')
+  test('functional src', () => {
+    expect(getIn(src, ['obj', 'a'])).toBe('a')
+    expect(getIn(src, 'obj.a')).toBe('a')
+    expect(getIn(src, 'arr.0.prop')).toBe('a')
+    expect(getIn(src, 'obj.c')).toBeUndefined()
   })
 
-  test('in array', () => {
-    expect(getIn(src, 'e.1')).toEqual(src.e[1])
-    expect(getIn(src, 'e.1.g')).toBe('g')
-  })
-
-  test('result is shallow clone', () => {
-    expect(getIn(src, 'a')).not.toBe(src.a)
-    expect(getIn(src, 'a')).toEqual(src.a)
-  })
-
-  test('result is undefined when target missing', () => {
-    expect(getIn(src, 'a.b.c')).toBeUndefined()
+  test('object src', () => {
+    expect(getIn(src(), ['obj', 'a'])).toBe('a')
   })
 })
 
 describe('hasIn', () => {
-  test('object in', () => {
-    expect(hasIn(src, ['a', 'b'])).toBe(true)
-    expect(hasIn(src, 'a.b')).toBe(true)
-    expect(hasIn(src, 'a.d')).toBe(false)
+  test('functional src', () => {
+    expect(hasIn(src, ['obj'])).toBe(true)
+    expect(hasIn(src, ['obj', 'a'])).toBe(true)
+    expect(hasIn(src, 'arr.0.prop')).toBe(true)
+    expect(hasIn(src, 'obj.a.b.c.d')).toBe(false)
   })
 
-  test('array in', () => {
-    expect(hasIn(src, 'e.1')).toBe(true)
-    expect(hasIn(src, 'e.1.g')).toBe(true)
-    expect(hasIn(src, 'e.1.f')).toBe(false)
+  test('object src', () => {
+    expect(hasIn(src(), ['obj'])).toBe(true)
   })
 })
 
 describe('setIn', () => {
-  test('object in', () => {
-    const exp = { b: 'b', c: { d: 'd!' } }
-    expect(setIn(src.a, ['c'], { d: 'd!' })).toEqual(exp)
-    expect(src.a.c).toEqual({ d: 'd' }) // expect immutabe
+  test('functional src', () => {
+    const r1 = setIn(src, ['obj', 'a'], 'A')
+    const r2 = setIn(src, 'arr.0.prop', 'A')
+    expect(r1).toEqual({ ...src(), obj: { a: 'A', b: 'b' } })
+    expect(r2).toEqual({ ...src(), arr: [{ prop: 'A' }, { prop: 'b' }] })
   })
 
-  test('array in', () => {
-    const exp = [{ f: 'f!' }, { g: 'g' }]
-    expect(setIn(src, 'e.0', { f: 'f!' }).e).toEqual(exp)
-    expect(src.e[0]).toEqual({ f: 'f' }) // expect immutable
+  test('object src', () => {
+    const srcObj = src()
+    const r = setIn(srcObj, ['obj', 'a'], 'A')
+    expect(r).toEqual({ ...src(), obj: { a: 'A', b: 'b' } })
+    expect(srcObj).not.toEqual(r) // immutable
   })
 
-  test('create key when missing', () => {
-    const exp = { b: 'b', c: { d: 'd' }, d: { e: { f: 'f' } } }
-    expect(setIn(src.a, 'd.e', { f: 'f' })).toEqual(exp)
+  test('create node when missing', () => {
+    const r = setIn(src, 'obj.c.d', 'D')
+    expect(r).toEqual({ ...src(), obj: { ...src().obj, c: { d: 'D' } } })
   })
 })
 
 describe('updateIn', () => {
-  test('object in', () => {
-    const r = updateIn(src, ['a', 'b'], v => v + '!')
-    expect(r.a.b).toBe('b!')
-    expect(src.a.b).toBe('b')
+  test('functional src', () => {
+    const r1 = updateIn(src, ['obj'], v => ({ ...v, a: 'A' }))
+    const r2 = updateIn(src, 'arr.0.prop', () => 'A')
+    expect(r1).toEqual({ ...src(), obj: { a: 'A', b: 'b' } })
+    expect(r2).toEqual({ ...src(), arr: [{ prop: 'A' }, { prop: 'b' }] })
   })
-
-  test('array in', () => {
-    const r = updateIn(src, 'e.0.f', v => v + '!')
-    expect(r.e[0]).toEqual({ f: 'f!' })
-    expect(src.e[0]).toEqual({ f: 'f' })
+  test('object src', () => {
+    const r1 = updateIn(src(), ['obj'], v => ({ ...v, a: 'A' }))
+    expect(r1).toEqual({ ...src(), obj: { a: 'A', b: 'b' } })
   })
 })
 
 describe('delIn', () => {
-  test('object in', () => {
-    const r = delIn(src, ['a', 'c'])
-    expect(r.a.c).toBeUndefined()
-    expect(src.a.c).not.toBeUndefined()
+  test('functional src', () => {
+    const r = delIn(src, ['obj', 'a'])
+    expect(r).toEqual({ ...src(), obj: { b: 'b' } })
   })
-
-  test('array in', () => {
-    const r = delIn(src, 'e.0')
-    const r2 = delIn(src, 'e.0.f')
-    expect(r.e).toEqual([{ g: 'g' }])
-    expect(src.e).toEqual([{ f: 'f' }, { g: 'g' }])
-    expect(r2.e).toEqual([{}, { g: 'g' }])
+  test('object src', () => {
+    const r = delIn(src(), 'arr.1')
+    expect(r).toEqual({ ...src(), arr: [{ prop: 'a' }] })
   })
 })
-

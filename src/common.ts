@@ -1,5 +1,3 @@
-export { isPlainObject, omit, existy } from '@cotto/utils.ts'
-
 export type Path = string | (string | number)[]
 
 // 参考: https://github.com/debitoor/dot-prop-immutable
