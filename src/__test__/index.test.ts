@@ -1,4 +1,4 @@
-import { getIn, hasIn, setIn, updateIn, delIn } from './../index'
+import { getIn, hasIn, setIn, updateIn, delIn, validateIn } from './../index'
 
 const src = () => ({
   obj: { a: 'a', b: 'b' },
@@ -73,5 +73,14 @@ describe('delIn', () => {
   test('object src', () => {
     const r = delIn(src(), 'arr.1')
     expect(r).toEqual({ ...src(), arr: [{ prop: 'a' }] })
+  })
+})
+
+describe('validateIn', () => {
+  test('validate', () => {
+    const r1 = validateIn(src, ['obj', 'a'], s => typeof s === 'string')
+    const r2 = validateIn(src, ['obj', 'a'], s => s === 'b')
+    expect(r1).toBe(true)
+    expect(r2).toBe(false)
   })
 })
