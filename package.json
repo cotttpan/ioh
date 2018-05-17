@@ -1,7 +1,7 @@
 {
   "name": "ioh",
   "description": "Typescript friendly Immutable Object Helper functions",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "author": "cotto",
   "license": "MIT",
   "homepage": "https://github.com/cotttpan/ioh",
@@ -50,11 +50,8 @@
     "compile:es": "tsc --module es2015 --outDir es",
     "clean": "rimraf ./dist ./es",
     "lint": "tslint src/**/*.ts",
-    "prepublishOnly": "run-s clean compile",
-    "release": "np --yolo",
-    "test": "NODE_EVN=test jest --watch"
-  },
-  "publishConfig": {
-    "access": "public"
+    "prepublishOnly": "run-s clean test compile",
+    "release": "npm publish && git add . && git c -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags ",
+    "test": "NODE_EVN=test jest"
   }
 }
