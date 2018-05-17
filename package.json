@@ -35,6 +35,7 @@
     "@types/node": "^10.1.0",
     "@types/sinon": "^4.3.3",
     "jest": "^22.4.3",
+    "np": "^2.20.1",
     "npm-run-all": "^4.1.3",
     "rimraf": "^2.6.2",
     "sinon": "^5.0.7",
@@ -44,13 +45,16 @@
     "typescript": "^2.8.3"
   },
   "scripts": {
-    "build": "run-p build:*",
-    "build:dist": "tsc",
-    "build:es": "tsc --module es2015 --outDir es",
+    "compile": "run-p compile:*",
+    "compile:dist": "tsc",
+    "compile:es": "tsc --module es2015 --outDir es",
     "clean": "rimraf ./dist ./es",
     "lint": "tslint src/**/*.ts",
-    "myprepublish": "run-s clean build",
-    "mypublish": "npm run myprepublish && npm publish",
+    "prepublishOnly": "run-s clean compile",
+    "release": "np --yolo",
     "test": "NODE_EVN=test jest --watch"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
